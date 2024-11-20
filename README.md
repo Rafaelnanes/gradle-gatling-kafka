@@ -6,11 +6,10 @@
 docker compose -f docker-compose.yml up -d
 ```
 
-### run docker compose
+### create topic interactive
 
 ```console
-docker exec -it <kafka-container-id> /opt/kafka/bin/kafka-topics.sh --create --zookeeper zookeeper:2181 --replication-factor 1 --partitions 1 --topic my-topic
+docker exec -it $MY_CONTAINER kafka-topics --bootstrap-server $KAFKA_HOST --create --topic $TOPIC_NAME --partitions 1 --replication-factor 1
+docker exec -it 595774f2ab35 kafka-topics --bootstrap-server localhost:29092 --create --topic topic1 --partitions 1 --replication-factor 1
 ```
 
-docker exec -it gradle-gatling-kafka-kafka-1 /opt/kafka/bin/kafka-topics.sh --create --zookeeper zookeeper:2181
---replication-factor 1 --partitions 1 --topic my-topic
