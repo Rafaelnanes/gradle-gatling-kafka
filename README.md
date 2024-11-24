@@ -3,13 +3,32 @@
 ### run docker compose
 
 ```console
-docker compose -f docker-compose.yml up -d
+docker compose up -d
 ```
 
-### create topic interactive
+### list topics using docker
 
 ```console
-docker exec -it $MY_CONTAINER kafka-topics --bootstrap-server $KAFKA_HOST --create --topic $TOPIC_NAME --partitions 1 --replication-factor 1
-docker exec -it 595774f2ab35 kafka-topics --bootstrap-server localhost:29092 --create --topic topic1 --partitions 1 --replication-factor 1
+docker exec kafka-broker-1 kafka-topics --list --bootstrap-server kafka-broker-1:9092  
 ```
+
+### Delete topic using docker
+
+```console
+docker exec kafka-broker-1 kafka-topics --delete --bootstrap-server kafka-broker-1:9092  --topic $topic
+```
+
+### Create topic using docker
+
+```console
+docker exec kafka-broker-1 kafka-topics --bootstrap-server kafka-broker-1:9092 --create --topic ExampleTopic --partitions 1 --replication-factor 1
+```
+
+## Pending
+
+- [ ] Avro
+- [ ] Authentication
+- [ ] Configure multi module in gradle
+- [ ] Make use of gatling
+
 
