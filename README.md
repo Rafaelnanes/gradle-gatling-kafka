@@ -1,12 +1,12 @@
 # Commands
 
-### run docker compose
+### Run docker compose
 
 ```console
 docker compose up -d
 ```
 
-### list topics using docker
+### List topics using docker
 
 ```console
 docker exec kafka-broker-1 kafka-topics --list --bootstrap-server kafka-broker-1:9092  
