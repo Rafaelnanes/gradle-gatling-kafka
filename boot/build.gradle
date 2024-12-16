@@ -1,0 +1,61 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.5' // Assuming latest Spring Boot version
+    id 'io.spring.dependency-management' version '1.1.0' // Assuming latest dependency management version
+//    id "org.graalvm.buildtools.native" version "0.10.3" // Not converted (check documentation)
+//    id 'kotlin-jvm' version '1.9.20'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    ext {
+//        someVersion = "anyVersion";
+    }
+//    implementation("someDepencency:${someV}") // Not converted (replace with actual dependency)
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.kafka:spring-kafka'
+    implementation libs.jackson.databind // Assuming libs configured elsewhere
+    compileOnly 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.kafka:spring-kafka-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
+
+project.ext {
+//    val configProperties = new Properties(); // Not converted (check documentation)
+    myVal = "a" // Use 'def' for variable declaration in Groovy
+}
+
+task('hello') {
+    doLast {
+        println 'Hello!'
+    }
+}
+
+task('greet') {
+    def env = System.getenv('ENV') ?: 'default'
+    ext{
+        myOtherValue =  "anyValue"
+    }
+    doLast {
+        println "How are you?"
+        println "My env: $env"
+        println "My myVal: $myVal"
+        println "My myOtherValue: $myOtherValue"
+    }
+    dependsOn 'hello'
+}
+
+clean {
+    dependsOn 'greet'
+}

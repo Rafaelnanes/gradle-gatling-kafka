@@ -1,0 +1,11 @@
+[versions]
+spring-boot = "3.4.0"
+spring-dependency-management = "1.1.6"
+jackson-databind = "2.18.2"
+
+[libraries]
+jackson-databind = { group = "com.fasterxml.jackson.core", name = "jackson-databind", version.ref = "jackson-databind" }
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "spring-boot"}
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "spring-dependency-management"}
